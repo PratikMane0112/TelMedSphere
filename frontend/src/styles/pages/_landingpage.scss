@@ -294,28 +294,28 @@
             }
         }
     }
-
-
-
+ 
     .benefits-section {
         padding: 3rem 0;
         background-color: white;
-
+    
         .content {
             text-align: center;
             color: var(--blue-color-9);
         }
-
+    
         .benefits {
             display: flex;
-            flex-wrap: wrap;
+            // flex-wrap: wrap;
             margin: 0 auto;
             max-width: 1000px;
             justify-content: center;
+            align-items: center;
+            gap: 1.5rem;
             margin-top: 2rem;
             color: var(--blue-color-7);
         }
-
+    
         .first,
         .second,
         .third,
@@ -325,75 +325,94 @@
             min-width: 210px;
             max-width: 210px;
             text-align: center;
-            padding: 1rem 2rem;
-            border-radius: 7px;
-            transition: all 0.3s ease;
+            padding: 2rem;
+            border-radius: 12px;
             background-color: var(--blue-color-1);
             margin: 1rem;
-
-            .icon {
-                font-size: 1.5em;
-                flex: 0 0 20%;
+            transition: transform 0.4s ease, box-shadow 0.4s ease, background 0.4s ease;
+            position: relative;
+            overflow: hidden;
+    
+            &:hover {
+                transform: scale(1.1) rotate(3deg);
+                box-shadow: 0 15px 25px rgba(0, 0, 0, 0.2);
+                background: linear-gradient(135deg, #e3f2fd, #fff);
             }
-
+    
+            &::before {
+                content: '';
+                position: absolute;
+                top: -50%;
+                left: -50%;
+                width: 200%;
+                height: 200%;
+                background: radial-gradient(circle, rgba(255, 255, 255, 0.2), transparent);
+                z-index: 0;
+                transform: rotate(45deg);
+                transition: opacity 0.4s ease;
+            }
+    
+            &:hover::before {
+                opacity: 1;
+            }
+    
+            .icon {
+                font-size: 2rem;
+                color: var(--blue-color-5);
+                transition: transform 0.4s ease, color 0.4s ease;
+                z-index: 1;
+    
+                &:hover {
+                    transform: rotate(-15deg) scale(1.2);
+                    color: var(--blue-color-9);
+                }
+            }
+    
             p {
-                flex: 0 0 70%;
+                font-size: 1.1rem;
+                margin-top: 1rem;
+                color: var(--blue-color-6);
+                z-index: 1;
+                transition: color 0.4s ease;
+    
+                &:hover {
+                    color: var(--blue-color-9);
+                }
             }
         }
-
+    
+        // Mixin for color-specific styles
+        @mixin benefit-style($bg-color, $icon-color) {
+            background-color: $bg-color;
+    
+            .icon {
+                color: $icon-color;
+            }
+    
+            &:hover {
+                .icon {
+                    color: lighten($icon-color, 20%);
+                }
+            }
+        }
+    
         .first {
-            background-color: rgba(246, 171, 47, 0.1);
-            transition: all 0.3s ease-in-out;
-
-            .icon {
-                color: #f6ab2f;
-            }
-
-            &:hover {
-                box-shadow: 0 0 4px 0px #f6ab2f;
-            }
+            @include benefit-style(rgba(246, 171, 47, 0.1), #f6ab2f);
         }
-
+    
         .second {
-            background-color: rgba(12, 184, 182, 0.1);
-            transition: all 0.3s ease-in-out;
-
-            .icon {
-                color: #0cb8b6;
-            }
-
-            &:hover {
-                box-shadow: 0 0 4px 0px #0cb8b6;
-            }
+            @include benefit-style(rgba(12, 184, 182, 0.1), #0cb8b6);
         }
-
+    
         .third {
-            background-color: rgba(230, 73, 45, 0.1);
-            transition: all 0.3s ease-in-out;
-
-            .icon {
-                color: #e6492d;
-            }
-
-            &:hover {
-                box-shadow: 0 0 4px 0px #e6492d;
-            }
+            @include benefit-style(rgba(230, 73, 45, 0.1), #e6492d);
         }
-
+    
         .fourth {
-            background-color: rgba(22, 101, 216, 0.1);
-            transition: all 0.3s ease-in-out;
-
-            .icon {
-                color: #1665d8;
-            }
-
-            &:hover {
-                box-shadow: 0 0 4px 0px #1665d8;
-            }
+            @include benefit-style(rgba(22, 101, 216, 0.1), #1665d8);
         }
     }
-
+    
 
     .team-section {
         padding: 5rem 0;
