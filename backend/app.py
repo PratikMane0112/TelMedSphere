@@ -46,6 +46,9 @@ patients = client.get_database("telmedsphere").patients
 
 YOUR_DOMAIN = os.getenv('DOMAIN') 
 
+@app.get("/")
+def getInfo():
+    return "API WORKING"
 
 @app.before_request
 def before_request():
