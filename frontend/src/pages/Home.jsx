@@ -12,6 +12,7 @@ import httpClient from "../httpClient";
 import Preloader from "../components/common/Preloader";
 import commonContext from "../contexts/common/commonContext";
 import useScrollDisable from "../hooks/useScrollDisable";
+import HealthFact from "../components/facts/HealthFact";
 
 
 const Home = () => {
@@ -377,10 +378,7 @@ const Home = () => {
                         <h2>Healthy Fact of the Day</h2>
                     </div>
                     <div className="content">
-                        <h3>Eat lots of fruit and veg</h3>
-                        <p>It's recommended that you eat at least 5 portions of a variety of fruit and veg every day. They can be fresh, frozen, canned, dried or juiced.</p>
-                        <p>A portion of fresh, canned or frozen fruit and vegetables is 80g. A portion of dried fruit (which should be kept to mealtimes) is 30g.</p>
-                        <p>A 150ml glass of fruit juice, vegetable juice or smoothie also counts as 1 portion, but limit the amount you have to no more than 1 glass a day as these drinks are sugary and can damage your teeth.</p>
+                       <HealthFact/>
                     </div>
                 </div>
 
