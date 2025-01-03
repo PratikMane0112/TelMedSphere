@@ -79,20 +79,21 @@
         }
     }
 }
-
 .sub_footer_wrapper {
-    @include flexbox(space-between, center);
+    @include flexbox(center, center);
+    flex-direction: column; // Align items vertically by default
+    gap: 1rem; // Add some spacing between elements
+    padding: 1rem 0;
 
     @include devices(md) {
-        @include flexbox();
-        flex-direction: column-reverse;
         gap: 2rem;
     }
 }
 
 .foot_copyright {
     font-size: 0.95rem;
-    
+    text-align: center; // Ensure text is centered
+
     a {
         opacity: 0.8;
         color: var(--blue-color-8);
@@ -106,16 +107,16 @@
 }
 
 .foot_social {
-    @include flexbox();
+    @include flexbox(center, center); // Center social icons
     gap: 2rem;
     font-size: 1.2rem;
-    margin-right: 4rem;
-
 
     .icon {
         transition: all 0.3s ease-in-out;
+
         &:hover {
             color: var(--blue-color-9);
+            transform: scale(1.1); // Add a slight scale effect on hover
         }
     }
 }
