@@ -1,9 +1,12 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 // Base
 @import "./base/variables";
 @import "./base/mixins";
 @import "./base/reset";
 @import "./base/common";
-
 
 // Components
 @import "./components/header";
@@ -31,4 +34,3 @@
 @import "./pages/orders";
 @import "./pages/dispred";
 @import "./pages/mywallet";
-

@@ -6,7 +6,7 @@ import Header from "./components/common/Header";
 import RouterRoutes from "./routes/RouterRoutes";
 import Footer from "./components/common/Footer";
 import BackTop from "./components/common/BackTop";
-import httpClient from "./httpClient";///
+import httpClient from "./httpClient";
 
 const App = () => {
 
