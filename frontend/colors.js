@@ -1,7 +1,13 @@
+const { cyan } = require("@mui/material/colors");
+
 module.exports = {
   black: {
     1: "#222",
     2: "#1D1F2C",
+    // Dark Mode
+    3: "#101314",
+    4: "#0D111C",
+    5: "#1E2225",
   },
   blue: {
     1: "#D4DDF1",
@@ -23,6 +29,25 @@ module.exports = {
     18: "#8FB8D8",
     19: "#6FA3D8",
     20: "#1F4E79",
+    // Dark Mode
+    21: "#81ACF5",
+    22: "#54C5FF",
+    23: "#595CB7",
+    24: "#435585",
+    25: "#4B5D93",
+    26: "#131B30",
+    27: "#00004A",
+    28: "#383BAA",
+    29: "#383BAA",
+    30: "#1E2E58",
+    31: "#2A3454",
+    32: "#6CA9F5",
+  },
+  cyan: {
+    // Dark Mode
+    1: "#7AFFFF",
+    2: "#52FFFF",
+    3: "#3B9FD0",
   },
   yellow: {
     1: "#F5F5DC",
@@ -31,10 +56,26 @@ module.exports = {
     4: "#FFD700",
     5: "#EAA938",
     6: "#AF9500",
+    // Dark Mode
+    7: "#FFC92E",
+    8: "#C1B697",
+    9: "#FFD93B",
+    10: "#907A37",
+  },
+  red: {
+    // Dark Mode
+    1: "#BF1500",
+    2: "#FF603C",
+    3: "#260200",
+    4: "#350000",
+    5: "#FF0A0A",
+    6: "#B30505",
   },
   orange: {
     1: "#FF8400",
     2: "#AF5B00",
+    // Dark Mode
+    3: "#FF7900",
   },
   grey: {
     1: "#A9AFC3",
@@ -45,6 +86,8 @@ module.exports = {
     6: "#A6A6A6",
     7: "#8C8C8C",
     8: "#7D7D7D",
+    // Dark Mode
+    9: "#606A6F",
   },
   white: {
     1: "#FFFFFF",
@@ -74,6 +117,8 @@ module.exports = {
     3: "#5DAA5D",
     4: "#3B8A3B",
     5: "#2A6A2A",
+    // Dark Mode
+    6: "#4DFF99",
   },
   social: {
     fb: "#4A71C3",

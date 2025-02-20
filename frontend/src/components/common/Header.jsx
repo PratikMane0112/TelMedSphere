@@ -89,7 +89,7 @@ const Header = () => {
         localStorage.getItem("username") !== "undefined" &&
         localStorage.getItem("usertype") === "patient" && (
           <div
-            className={`overflow-x-hidden flex justify-between items-center py-4 px-40 border-b-[1px] border-blue-8 h-full transition-all duration-300 ease-out max-lg:px-5 max-sm:px-4 max-sm:py-4 max-xs:p-2 dark:bg-black-3 dark:text-white-1 dark:hover:text-blue-2 dark:border-white-1 ${
+            className={`overflow-x-hidden flex justify-between items-center py-4 px-40 border-b-[1px] border-blue-8 h-full transition-all duration-300 ease-out max-lg:px-5 max-sm:px-4 max-sm:py-4 max-xs:p-2 dark:bg-black-3 dark:text-white-1 dark:hover:text-blue-2 dark:border-grey-3 ${
               isScrolled ? "opacity-0 h-0 p-0" : ""
             }`}
           >
@@ -135,8 +135,8 @@ const Header = () => {
         )}
       <header
         id=""
-        className={`z-[999] w-full text-blue-8 md:px-8 pt-6 pb-6 transition-colors duration-0 ease-linear h-full bg-[#f5f5f5] ${
-          isSticky ? "top-0 sticky bg-blue-1" : ""
+        className={`z-[999] w-full text-blue-8 md:px-8 pt-6 pb-6 transition-colors duration-0 ease-linear h-full bg-[#f5f5f5] dark:text-white-1 ${
+          isSticky ? "top-0 sticky bg-blue-1 dark:bg-black-5" : "dark:bg-black-3 "
         } `}
       >
         <div className="max-w-[1440px] mx-auto max-sm:px-2 px-6 max-xl:max-w-[1280px] max-lg:max-w-[1024px] max-md:max-w-[768px] max-sm:max-w-full h-full">
@@ -156,14 +156,14 @@ const Header = () => {
                   <button
                     type="button"
                     onClick={handleLoginClick}
-                    className="py-[0.7rem] max-md:py-2 max-md:px-4 px-6 rounded-[4px] text-white-1 bg-blue-4 transition-colors duration-300 cursor-pointer hover:bg-blue-6 max-md:text-sm"
+                    className="py-[0.7rem] max-md:py-2 max-md:px-4 px-6 rounded-[4px] text-white-1 bg-blue-4 transition-colors duration-300 cursor-pointer hover:bg-blue-6 max-md:text-sm dark:bg-blue-25 dark:hover:bg-blue-31"
                   >
                     Login
                   </button>
                   <button
                     type="button"
                     onClick={handleRegisterClick}
-                    className="max-md:hidden py-[0.7rem] px-6 rounded-[4px] text-white-1 bg-blue-4 transition-colors duration-300 cursor-pointer hover:bg-blue-6 max-md:text-sm"
+                    className="max-md:hidden py-[0.7rem] px-6 rounded-[4px] text-white-1 bg-blue-4 transition-colors duration-300 cursor-pointer hover:bg-blue-6 max-md:text-sm dark:bg-blue-25 dark:hover:bg-blue-31"
                   >
                     Register
                   </button>
@@ -171,7 +171,7 @@ const Header = () => {
                 <div className="rounded-full pt-2 cursor-pointer flex justify-end items-center col-span-1">
                   {isDarkMode ? (
                     <FaSun
-                      className=" w-7 h-7 max-sm:w-6 max-sm:h-6 text-white-1 hidden dark:block bg-blue-3 p-[0.3rem] max-sm:p-1 rounded-full align-middle"
+                      className=" w-7 h-7 max-sm:w-6 max-sm:h-6 text-white-1 hidden dark:block bg-blue-3 p-[0.3rem] max-sm:p-1 rounded-full align-middle dark:bg-blue-25 dark:hover:bg-blue-31"
                       onClick={toggleDarkMode}
                     />
                   ) : (
@@ -188,12 +188,18 @@ const Header = () => {
             {localStorage.getItem("username") !== null &&
             localStorage.getItem("username") !== undefined ? (
               windowWidth >= 800 ? (
-                <nav className={`hidden md:flex items-center ${localStorage.getItem("usertype") == "doctor" ? " xl:ml-32 lg:gap-8 max-lg:gap-7" : "gap-8 max-lg:gap-7"}`}>
+                <nav
+                  className={`hidden md:flex items-center ${
+                    localStorage.getItem("usertype") == "doctor"
+                      ? " xl:ml-32 lg:gap-8 max-lg:gap-7"
+                      : "gap-8 max-lg:gap-7"
+                  }`}
+                >
                   <div
-                    className={`hover:text-blue-9 content-none  transition-all duration-300 text-[0.9em] pt-[13px] pb-2 inline-flex items-center text-blue-8 ${
+                    className={`hover:text-blue-9 content-none  transition-all duration-300 text-[0.9em] pt-[13px] pb-2 inline-flex items-center dark:hover:text-blue-2 ${
                       curPath === "/home"
-                        ? "text-blue-9 border-b-[2px] border-blue-9"
-                        : ""
+                        ? "text-blue-9 border-b-[2px] border-blue-9 dark:text-blue-32 dark:border-blue-5"
+                        : "dark:text-white-1 text-blue-8"
                     }`}
                   >
                     <span
@@ -206,10 +212,10 @@ const Header = () => {
 
                   {localStorage.getItem("usertype") === "patient" && (
                     <div
-                      className={`hover:text-blue-9 content-none  transition-all duration-300 text-[0.9em] pt-[13px] pb-2 inline-flex items-center text-blue-8 ${
+                      className={`hover:text-blue-9 content-none  transition-all duration-300 text-[0.9em] pt-[13px] pb-2 inline-flex items-center dark:hover:text-blue-2 ${
                         curPath === "/doctors"
-                          ? "text-blue-9 border-b-[2px] border-blue-9"
-                          : ""
+                          ? "text-blue-9 border-b-[2px] border-blue-9 dark:text-blue-32 dark:border-blue-5"
+                          : "dark:text-white-1 text-blue-8"
                       }`}
                     >
                       <span
@@ -221,10 +227,10 @@ const Header = () => {
                     </div>
                   )}
                   <div
-                    className={`hover:text-blue-9 content-none  transition-all duration-300 text-[0.9em] pt-[13px] pb-2 inline-flex items-center text-blue-8 ${
+                    className={`hover:text-blue-9 content-none  transition-all duration-300 text-[0.9em] pt-[13px] pb-2 inline-flex items-center dark:hover:text-blue-2 ${
                       curPath === "/disease-prediction"
-                        ? "text-blue-9 border-b-[2px] border-blue-9"
-                        : ""
+                        ? "text-blue-9 border-b-[2px] border-blue-9 dark:text-blue-32 dark:border-blue-5"
+                        : "dark:text-white-1 text-blue-8"
                     }`}
                   >
                     <span
@@ -242,10 +248,10 @@ const Header = () => {
                                         </div> */}
 
                   <div
-                    className={`hover:text-blue-9 content-none  transition-all duration-300 text-[0.9em] pt-[13px] pb-2 inline-flex items-center text-blue-8 ${
+                    className={`hover:text-blue-9 content-none  transition-all duration-300 text-[0.9em] pt-[13px] pb-2 inline-flex items-center dark:hover:text-blue-2 ${
                       curPath === "/buy-medicines"
-                        ? "text-blue-9 border-b-[2px] border-blue-9"
-                        : ""
+                        ? "text-blue-9 border-b-[2px] border-blue-9 dark:text-blue-32 dark:border-blue-5"
+                        : "dark:text-white-1 text-blue-8"
                     }`}
                   >
                     <span
@@ -253,7 +259,7 @@ const Header = () => {
                       className="cursor-pointer font-bold relative"
                     >
                       MEDICINES
-                      <span className="cursor-pointerfont-bold px-[5px] py-[3px] bg-blue-8 absolute -top-[14px] text-white-1 -right-[40px] rounded-[40px] hover:bg-blue-9 text-[10px] z-9999">
+                      <span className="cursor-pointerfont-bold px-[5px] py-[3px] bg-blue-8 absolute -top-[14px] text-white-1 -right-[35px] rounded-[40px] hover:bg-blue-9 text-[9px] z-9999 dark:bg-blue-25 dark:text-white-1">
                         20% off
                       </span>
                     </span>
@@ -261,7 +267,7 @@ const Header = () => {
 
                   {/* Account Dropdown */}
                   <div
-                    className="relative hover:text-blue-9  transition-all duration-300 text-[0.9em] pt-[13px] pb-2 text-blue-8 "
+                    className="relative hover:text-blue-9  transition-all duration-300 text-[0.9em] pt-[13px] pb-2 text-blue-8 dark:text-white-1 dark:hover:text-blue-2 "
                     ref={dropdownRef}
                   >
                     <span
@@ -271,13 +277,15 @@ const Header = () => {
                       ACCOUNT
                     </span>
                     {showDropdown && (
-                      <div className="absolute top-[5rem] right-0 w-[17rem] bg-blue-6 p-6 text-[0.9rem] rounded-[3px] text-[#eee] border-[1px] border-grey-3  z-50 transition-all duration-200 ease-in-out">
+                      <div className="absolute top-[5rem] right-0 w-[17rem] bg-blue-6 p-6 text-[0.9rem] rounded-[3px] text-[#eee] border-[1px] border-grey-3 z-50 transition-all duration-200 ease-in-out dark:bg-blue-31">
                         <div>
                           <h4 className="font-semibold space-x-[0.5px]  text-blue-2">
                             <span className=" text-[1em] opacity-95 hover:opacity-100 text-white-1">
                               Hello! &nbsp;
                             </span>
-                            {localStorage.getItem("username")}
+                            <span className="dark:text-white-1/75">
+                              {localStorage.getItem("username")}
+                            </span>
                           </h4>
                           <p className="text-[0.8rem] mt-2">
                             Have a great health!!
@@ -345,7 +353,7 @@ const Header = () => {
                   <div className="rounded-full cursor-pointer flex justify-end items-center relative -left-2">
                     {isDarkMode ? (
                       <FaSun
-                        className=" w-7 h-7 max-sm:w-6 max-sm:h-6 text-white-1  hidden dark:block bg-blue-8 p-[0.3rem] max-sm:p-1 rounded-full align-middle"
+                        className=" w-7 h-7 max-sm:w-6 max-sm:h-6 text-white-1  hidden dark:block bg-blue-8 p-[0.3rem] max-sm:p-1 rounded-full align-middle dark:bg-blue-25 dark:text-white-1"
                         onClick={toggleDarkMode}
                       />
                     ) : (
@@ -361,7 +369,7 @@ const Header = () => {
                   <div className="rounded-full cursor-pointer flex justify-end items-center">
                     {isDarkMode ? (
                       <FaSun
-                        className=" w-7 h-7 max-sm:w-6 max-sm:h-6 text-white-1  hidden dark:block bg-blue-8 p-[0.3rem] max-sm:p-1 rounded-full align-middle"
+                        className=" w-7 h-7 max-sm:w-6 max-sm:h-6 text-white-1  hidden dark:block bg-blue-8 p-[0.3rem] max-sm:p-1 rounded-full align-middle dark:bg-blue-25 dark:text-white-1"
                         onClick={toggleDarkMode}
                       />
                     ) : (
@@ -376,7 +384,7 @@ const Header = () => {
                     className="w-auto h-7 max-sm:relative ml-8 max-sm:ml-3"
                   >
                     <div
-                      className="text-[1.5em] cursor-pointer font-bold"
+                      className="text-[1.5em] cursor-pointer font-bold dark:font-extrabold"
                       onClick={() => setSideBarOpen((prev) => !prev)}
                     >
                       {isSideBarOpen ? <MdClose /> : <CiMenuFries />}
@@ -389,12 +397,12 @@ const Header = () => {
                       }`}
                       ref={sidebarRef}
                     >
-                      <nav className="absolute flex flex-col top-[30px] right-0 gap-6 bg-blue-1 z-[99] py-4 px-20 rounded-[20px]">
+                      <nav className="absolute flex flex-col top-[30px] right-0 gap-6 bg-blue-1 z-[99] py-4 px-20 rounded-[20px] dark:bg-gray-800">
                         <div
-                          className={`hover:text-blue-9 content-none  transition-all duration-300 text-[0.9em] pt-[13px] pb-2 inline-flex items-center text-blue-8 r ${
+                          className={`hover:text-blue-9 content-none  transition-all duration-300 text-[0.9em] pt-[13px] pb-2 inline-flex items-center ${
                             curPath === "/home"
-                              ? "text-blue-9 border-b-[2px] border-blue-9"
-                              : ""
+                              ? "text-blue-9 border-b-[2px] border-blue-9 dark:text-blue-32 dark:border-blue-5"
+                              : "dark:text-white-1 text-blue-8"
                           }`}
                         >
                           <span
@@ -410,10 +418,10 @@ const Header = () => {
 
                         {localStorage.getItem("usertype") === "patient" && (
                           <div
-                            className={`hover:text-blue-9 content-none  transition-all duration-300 text-[0.9em] pt-[13px] pb-2 inline-flex items-center text-blue-8 ${
+                            className={`hover:text-blue-9 content-none  transition-all duration-300 text-[0.9em] pt-[13px] pb-2 inline-flex items-center ${
                               curPath === "/doctors"
-                                ? "text-blue-9 border-b-[2px] border-blue-9"
-                                : ""
+                                ? "text-blue-9 border-b-[2px] border-blue-9 dark:text-blue-32 dark:border-blue-5"
+                                : "dark:text-white-1 text-blue-8"
                             }`}
                           >
                             <span
@@ -428,10 +436,10 @@ const Header = () => {
                           </div>
                         )}
                         <div
-                          className={`hover:text-blue-9 content-none  transition-all duration-300 text-[0.9em] pt-[13px] pb-2 inline-flex items-center text-blue-8 ${
+                          className={`hover:text-blue-9 content-none  transition-all duration-300 text-[0.9em] pt-[13px] pb-2 inline-flex items-center ${
                             curPath === "/disease-prediction"
-                              ? "text-blue-9 border-b-[2px] border-blue-9"
-                              : ""
+                              ? "text-blue-9 border-b-[2px] border-blue-9 dark:text-blue-32 dark:border-blue-5"
+                              : "dark:text-white-1 text-blue-8"
                           }`}
                         >
                           <span
@@ -452,10 +460,10 @@ const Header = () => {
                                         </div> */}
 
                         <div
-                          className={`hover:text-blue-9 content-none  transition-all duration-300 text-[0.9em] pt-[13px] pb-2 inline-flex items-center text-blue-8 ${
+                          className={`hover:text-blue-9 content-none  transition-all duration-300 text-[0.9em] pt-[13px] pb-2 inline-flex items-center ${
                             curPath === "/buy-medicines"
-                              ? "text-blue-9 border-b-[2px] border-blue-9"
-                              : ""
+                              ? "text-blue-9 border-b-[2px] border-blue-9 dark:text-blue-32 dark:border-blue-5"
+                              : "dark:text-white-1 text-blue-8"
                           }`}
                         >
                           <span
@@ -463,17 +471,17 @@ const Header = () => {
                               navigate("/buy-medicines");
                               setSideBarOpen((prev) => !prev);
                             }}
-                            className="cursor-pointer font-bold relative text-center w-full"
+                            className="cursor-pointer font-bold relative text-center w-full "
                           >
                             MEDICINES
-                            <span className="cursor-pointerfont-bold px-[5px] py-[3px] bg-blue-8 absolute -top-[14px] text-white-1 -right-[40px] rounded-[40px] hover:bg-blue-9 text-[10px] z-9999">
+                            <span className="cursor-pointerfont-bold px-[5px] py-[3px] bg-blue-8 absolute -top-[14px] text-white-1 -right-[40px] rounded-[40px] hover:bg-blue-9 text-[10px] z-9999 dark:bg-blue-25 dark:text-white-1">
                               20% off
                             </span>
                           </span>
                         </div>
 
                         <div
-                          className={`hover:text-blue-9 content-none  transition-all duration-300 text-[0.9em] pt-[13px] pb-2 inline-flex items-center text-blue-8`}
+                          className={`hover:text-blue-9 content-none  transition-all duration-300 text-[0.9em] pt-[13px] pb-2 inline-flex items-center text-blue-8 dark:text-white-1`}
                         >
                           <span
                             className=" font-bold text-center w-full"
