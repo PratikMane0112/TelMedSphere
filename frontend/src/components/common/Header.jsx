@@ -16,6 +16,7 @@ import { IoWalletOutline } from "react-icons/io5";
 import logo from "../../assets/header.png";
 import { useDarkMode } from "../../contexts/DarkMode/DarkModeContext";
 import { FaMoon, FaSun } from "react-icons/fa";
+import { TiUserDeleteOutline } from "react-icons/ti";
 
 const Header = () => {
   const { toggleForm, userLogout, toggleProfile } = useContext(commonContext);
@@ -329,13 +330,22 @@ const Header = () => {
                                 {cartItems.length}
                               </span>
                             </li>
-                            <li className="flex">
+                            <li className="mb-[0.7rem] flex">
                               <RiFileList3Line className="text-[1.4em] mr-[5px]" />
                               <Link
                                 to="/my-orders"
                                 onClick={() => setShowDropdown(false)}
                               >
                                 My Orders
+                              </Link>
+                            </li>
+                            <li className="flex">
+                              <TiUserDeleteOutline className="text-[1.4em] mr-[5px]" />
+                              <Link
+                                to="/delete-account"
+                                onClick={() => setShowDropdown(false)}
+                              >
+                                Delete Account
                               </Link>
                             </li>
                           </ul>
