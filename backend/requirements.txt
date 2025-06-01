@@ -11,5 +11,5 @@ werkzeug
 twilio
 firebase-admin
 cloudinary 
-pymupdf
-google-generativeai
+flask_swagger_ui
+flasgger
