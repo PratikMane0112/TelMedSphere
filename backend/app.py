@@ -20,16 +20,16 @@ import firebase_admin
 from firebase_admin import credentials, auth
 from utils.imageUploader import upload_file
 from bson import ObjectId
-#from flask_swagger_ui import get_swaggerui_blueprint
-# from flasgger import Swagger
-import google.generativeai as genai
-from utils.analyzeReport import extract_text_from_pdf
+from flask_swagger_ui import get_swaggerui_blueprint
+from flasgger import Swagger
+# import google.generativeai as genai
+# from utils.analyzeReport import extract_text_from_pdf
 
 load_dotenv()
 secret_key = secrets.token_hex(16)
 
 app = Flask(__name__)
-# swagger = Swagger(app)
+swagger = Swagger(app)
 
 app.config['SESSION_TYPE'] = 'filesystem'
 app.config['SECRET_KEY'] = secret_key
@@ -90,16 +90,16 @@ website_feedback = client.get_database("telmedsphere").website_feedback
 
 YOUR_DOMAIN = os.getenv('DOMAIN') 
 
-### Swagger specific ###
-# SWAGGER_URL = '/api/docs'  # URL for exposing Swagger UI (ex. http://your-domain/api/docs)
-# API_URL = '/static/swagger.yaml'  # URL where your swagger.yaml is stored
-# swaggerui_blueprint = get_swaggerui_blueprint(
-#     SWAGGER_URL,
-#     API_URL,
-#     config={ 'app_name': "Authentication API" }
-# )
-# app.register_blueprint(swaggerui_blueprint, url_prefix=SWAGGER_URL)
-### End Swagger specific ###
+## Swagger specific ###
+SWAGGER_URL = '/api/docs'  # URL for exposing Swagger UI (ex. http://your-domain/api/docs)
+API_URL = '/static/swagger.yaml'  # URL where your swagger.yaml is stored
+swaggerui_blueprint = get_swaggerui_blueprint(
+    SWAGGER_URL,
+    API_URL,
+    config={ 'app_name': "Authentication API" }
+)
+app.register_blueprint(swaggerui_blueprint, url_prefix=SWAGGER_URL)
+## End Swagger specific ###
 
 
 # Test MongoDB connection
@@ -145,9 +145,9 @@ def whatsapp_message(msg):
         return {"status": "error", "message": str(e)}
 
 # Set up Gemini
-GEMINI_API_KEY=os.getenv("GEMINI_API_KEY")
-genai.configure(api_key=GEMINI_API_KEY)
-model = genai.GenerativeModel("models/gemini-1.5-flash-latest")
+# GEMINI_API_KEY=os.getenv("GEMINI_API_KEY")
+# genai.configure(api_key=GEMINI_API_KEY)
+# model = genai.GenerativeModel("models/gemini-1.5-flash-latest")
 
 # ----------- stripe payment routes -----------------
 
@@ -1241,58 +1241,58 @@ def contact():
     
 # ----------- Analyze Report -----------------
 
-@app.route('/analyze_pdf', methods=['POST'])
-def analyze_pdf():
-    if 'pdf' not in request.files:
-        return jsonify({"error": "No PDF file provided"}), 400
+# @app.route('/analyze_pdf', methods=['POST'])
+# def analyze_pdf():
+#     if 'pdf' not in request.files:
+#         return jsonify({"error": "No PDF file provided"}), 400
 
-    # Get user input if available
-    user_input = request.form.get("user_input", "")
+#     # Get user input if available
+#     user_input = request.form.get("user_input", "")
 
-    pdf_file = request.files['pdf']
-    pdf_path = os.path.join(app.root_path, 'report.pdf')
-    pdf_file.save(pdf_path)
+#     pdf_file = request.files['pdf']
+#     pdf_path = os.path.join(app.root_path, 'report.pdf')
+#     pdf_file.save(pdf_path)
 
-    extracted_text = extract_text_from_pdf(pdf_path)
+#     extracted_text = extract_text_from_pdf(pdf_path)
 
-    try:
-        os.remove(pdf_path)
-    except Exception as e:
-        print(f"Error deleting file: {e}")
+#     try:
+#         os.remove(pdf_path)
+#     except Exception as e:
+#         print(f"Error deleting file: {e}")
 
-    if not extracted_text:
-        return jsonify({"error": "No text extracted from PDF"}), 400
+#     if not extracted_text:
+#         return jsonify({"error": "No text extracted from PDF"}), 400
     
-    prompt = f"""
-        You are a medical assistant. Analyze the following medical lab report and summarize only the abnormal or deficient parameters.
+#     prompt = f"""
+#         You are a medical assistant. Analyze the following medical lab report and summarize only the abnormal or deficient parameters.
 
-        Additional user info to consider: {user_input}
+#         Additional user info to consider: {user_input}
 
-        ⚠️ Return your response strictly in markdown format using the structure below for each abnormal element. Wrap the entire response inside triple backticks (```markdown). Use bullet points where indicated.
+#         ⚠️ Return your response strictly in markdown format using the structure below for each abnormal element. Wrap the entire response inside triple backticks (```markdown). Use bullet points where indicated.
 
-        Format (Markdown):
-        ```
-        ### **Element - Value (Status)**
----
+#         Format (Markdown):
+#         ```
+#         ### **Element - Value (Status)**
+# ---
 
-**Concern:**
-<brief explanation>
+# **Concern:**
+# <brief explanation>
 
-**Treatment Suggestions:**
-- **Diet**
+# **Treatment Suggestions:**
+# - **Diet**
 
-  **Veg -** <veg options>
+#   **Veg -** <veg options>
   
-  **Non-veg -** <non-veg options>
-- **Supplements:** <recommended supplements>
-- **Tips:** <lifestyle tips>
-```
+#   **Non-veg -** <non-veg options>
+# - **Supplements:** <recommended supplements>
+# - **Tips:** <lifestyle tips>
+# ```
 
-        Only use this format. At the end, provide a short summary (2-3 lines) what action should be taken.
+#         Only use this format. At the end, provide a short summary (2-3 lines) what action should be taken.
         
-        Here is the lab report:
-        {extracted_text}
-        """
+#         Here is the lab report:
+#         {extracted_text}
+#         """
     
-    response = model.generate_content(prompt)
-    return jsonify({"summary": response.text})
+#     response = model.generate_content(prompt)
+#     return jsonify({"summary": response.text})
