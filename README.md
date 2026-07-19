@@ -131,7 +131,7 @@ TelMedSphere is designed to make healthcare simple and accessible for both docto
  venv\Scripts\activate
  # Install all dependencies for flask server
  pip install -r requirements.txt     
- # Run flask server
+ # Run flask server by following command
  flask run
  # deactivate the virtual environment, when you are done
  deactivate
